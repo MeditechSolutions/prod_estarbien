@@ -10,7 +10,7 @@
 Módulo de personalización de la Clínica Estarbien en Odoo
     """,
     'website': 'http://www.mstech.pe',
-    'depends' : ['base','hospital_management'],
+    'depends' : ['base','basic_hms'],
     'data': [
         'views/medicina_cita_views.xml',
         'views/medicina_cita_medicina_views.xml',

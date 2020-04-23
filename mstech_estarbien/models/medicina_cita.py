@@ -961,7 +961,7 @@ class MedicinaCita(models.Model) :
     diagnostico_ids = fields.One2many(comodel_name='''medicina.cita.diagnostico''', inverse_name='''cita_id''', string='''Diagnóstico''', domain=[('tipo_diagnostico_oido','=','bilateral')])
     diagnostico_oido_derecho_ids = fields.One2many(comodel_name='''medicina.cita.diagnostico''', inverse_name='''cita_id''', string='''Diagnóstico del oido derecho''', domain=[('tipo_diagnostico_oido','=','derecho')])
     diagnostico_oido_izquierdo_ids = fields.One2many(comodel_name='''medicina.cita.diagnostico''', inverse_name='''cita_id''', string='''Diagnóstico del oido izquierdo''', domain=[('tipo_diagnostico_oido','=','izquierdo')])
-    historial_paciente = fields.Many2many(string='''Historial del paciente''')
+    historial_paciente = fields.Many2many(comodel_name='''medicina.cita''', relation='''medicina_cita_medicina_cita_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')
     
     name = fields.Char(string='''Cita''')
 

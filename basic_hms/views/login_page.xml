@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-
+    <!--
         <template id="web.login_layout" name="Login Layout">
             <t t-call="web.layout">
                 <t t-set="head">
@@ -26,5 +26,5 @@
                 </div>
             </t>
         </template>
-
+    -->
 </openerp>

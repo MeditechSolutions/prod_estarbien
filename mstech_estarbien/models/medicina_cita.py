@@ -12,7 +12,6 @@ class MedicinaPacientePerfil(models.Model) :
 class MedicalPatient(models.Model) :
     _inherit = 'medical.patient'
     
-    partner_address_id = fields.Many2one(string='''Empresa''')
     perfil_id = fields.Many2one(comodel_name='''medicina.paciente.perfil''',string='''Perfil''')
 
 class MedicinaCita(models.Model) :

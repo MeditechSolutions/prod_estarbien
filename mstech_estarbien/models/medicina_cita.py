@@ -952,11 +952,11 @@ class MedicinaCita(models.Model) :
             record.paciente_perfil_id = record.paciente_id.perfil_id
     
     auditado = fields.Boolean(string='''Auditado''')
-    auditor = fields.Many2one(string='''Auditor''')
-    responsable = fields.Many2one(string='''Responsable''')
+    auditor = fields.Many2one(comodel='''res.partner''', string='''Auditor''')
+    responsable = fields.Many2one(comodel='''res.partner''', string='''Responsable''')
     revisado = fields.Boolean(string='''Revisado''')
-    medico = fields.Many2one(string='''Médico''')
-    evaluador = fields.Many2one(string='''Evaluador''')
+    medico = fields.Many2one(comodel='''res.partner''', string='''Médico''')
+    evaluador = fields.Many2one(comodel='''res.partner''', string='''Evaluador''')
     
     diagnostico_ids = fields.One2many(comodel_name='''medicina.cita.diagnostico''', inverse_name='''cita_id''', string='''Diagnóstico''', domain=[('tipo_diagnostico_oido','=','bilateral')])
     diagnostico_oido_derecho_ids = fields.One2many(comodel_name='''medicina.cita.diagnostico''', inverse_name='''cita_id''', string='''Diagnóstico del oido derecho''', domain=[('tipo_diagnostico_oido','=','derecho')])

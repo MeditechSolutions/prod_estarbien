@@ -27,8 +27,8 @@
                             <group name="datos_paciente_left">
                                 <field name="fecha_cita"/><!-- TODO -->
                                 <field name="paciente_apellidos_nombres"/><!-- TODO -->
-                                <field name="paciente_dni" attrs="{'invisible': [['tipo','=','electrocardiograma']]}"/><!-- Altura -->
-                                <field name="paciente_dni" string="Código" attrs="{'invisible': [['tipo','!=','electrocardiograma']]}"/><!-- EKG -->
+                                <field name="paciente_dni" attrs="{'invisible': [['tipo_cita','=','electrocardiograma']]}"/><!-- Altura -->
+                                <field name="paciente_dni" string="Código" attrs="{'invisible': [['tipo_cita','!=','electrocardiograma']]}"/><!-- EKG -->
                                 <field name="paciente_edad"/><!-- Medicina,EKG -->
                                 <field name="paciente_sexo"/><!-- Medicina,Altura -->
                                 <field name="paciente_perfil"/><!-- Medicina,Altura -->
@@ -53,7 +53,7 @@
                             <group name="control_medico_right">
                                 <field name="auditado"/>
                                 <field name="revisado"/>
-                                <field name="evaluador" attrs="{'invisible': [['tipo','!=','electrocardiograma']]}"/>
+                                <field name="evaluador" attrs="{'invisible': [['tipo_cita','!=','electrocardiograma']]}"/>
                             </group>
                         </group>
                         <notebook name="medicina_ocupacional"/>

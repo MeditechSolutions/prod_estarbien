@@ -27,7 +27,7 @@ class MedicinaCita(models.Model) :
     altura_antecedentes_medicos_comentario = fields.Text(string='''Comentario/Detalle''')
     altura_asimetria_facial = fields.Boolean(string='''Asimetría facial''')
     altura_cefalea_frecuencia = fields.Boolean(string='''Frecuencia de cefaleas''')
-    altura_certificacion_aptitud = fields.Selection(string='''Aptitud para laborar por encima de 1.8 metros sobre el suelo''', selection='''[("apto","Apto"),("no_apto","No apto"),("apto_restricciones","Apto con restricciones")]''')
+    altura_certificacion_aptitud = fields.Selection(string='''Aptitud para laborar por encima de 1.8 metros sobre el suelo''', selection=[("apto","Apto"),("no_apto","No apto"),("apto_restricciones","Apto con restricciones")])
     altura_certificacion_lentes = fields.Boolean(string='''Uso permanente de lentes correctores''')
     altura_certificacion_observaciones = fields.Text(string='''Observaciones / Recomendaciones''')
     altura_certificacion_otras_restricciones = fields.Char(string='''Otras restricciones''')

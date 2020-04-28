@@ -969,7 +969,7 @@ class MedicinaCitaDiagnostico(models.Model) :
     _description = 'Diagnóstico de la cita'
     
     cita_id = fields.Many2one(comodel_name='''medicina.cita''', string='''Cita origen''', ondelete='''cascade''')
-    tipo_diagnostico_oido = fields.Selection(string='''Tipo de diagnóstico (oído)''',selection='''[["bilateral","Bilateral"],["derecho","Derecho"],["izquierdo","Izquierdo"]]''', default='''bilateral''')
+    tipo_diagnostico_oido = fields.Selection(string='''Tipo de diagnóstico (oído)''',selection=[("bilateral","Bilateral"),("derecho","Derecho"),("izquierdo","Izquierdo")], default='''bilateral''')
     codigo_cie_10 = fields.Char(string='''Código CIE-10 del diagnóstico''')
     descripcion = fields.Char(string='''Descripción del diagnóstico''')
     recomendaciones = fields.Char(string='''Recomendaciones del diagnóstico''')

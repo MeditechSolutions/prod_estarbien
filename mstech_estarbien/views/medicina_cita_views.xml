@@ -309,7 +309,7 @@
             <field name="domain">[('tipo_cita','=','laboratorio')]</field>
 	    </record>
         
-        <menuitem name="Ocupacional" id="medicina_ocupacional" parent="hospital_management.main_menu_hospital_management" sequence="1"/>
+        <menuitem name="Ocupacional" id="medicina_ocupacional" parent="basic_hms.main_menu_hospital_management" sequence="1"/>
         <menuitem name="Medicina" id="medicina_ocupacional_medicina" parent="medicina_ocupacional" action="medicina_cita_action_medicina" sequence="10"/>
         <menuitem name="Dermatología" id="medicina_ocupacional_dermatologia" parent="medicina_ocupacional" action="medicina_cita_action_dermatologia" sequence="12"/>
         <menuitem name="Anexo N°16 A" id="medicina_ocupacional_grandes_alturas" parent="medicina_ocupacional" action="medicina_cita_action_grandes_alturas" sequence="14"/>

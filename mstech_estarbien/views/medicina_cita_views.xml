@@ -31,7 +31,7 @@
                                 <field name="paciente_dni" string="Código" attrs="{'invisible': [['tipo_cita','!=','electrocardiograma']]}"/><!-- EKG -->
                                 <field name="paciente_edad"/><!-- Medicina,EKG -->
                                 <field name="paciente_sexo"/><!-- Medicina,Altura -->
-                                <field name="paciente_perfil"/><!-- Medicina,Altura -->
+                                <field name="paciente_perfil_id"/><!-- Medicina,Altura -->
                             </group>
                             <group name="datos_paciente_right">
                                 <field name="paciente_empresa_id"/><!-- Medicina,Altura -->

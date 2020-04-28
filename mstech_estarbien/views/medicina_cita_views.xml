@@ -57,6 +57,7 @@
                             </group>
                         </group>
                         <notebook name="medicina_ocupacional"/>
+			<field name="audiometria_bilateral" invisible="1"/>
                         <group name="cita_diagnostico">
                             <group name="cita_diagnostico_bilateral" colspan="2" string="Diagnóstico" attrs="{'invisible':[('audiometria_bilateral','=',False)]}">
                                 <field

@@ -28,7 +28,7 @@
                                 <field name="fecha_cita"/><!-- TODO -->
                                 <field name="paciente_apellidos_nombres"/><!-- TODO -->
                                 <field name="paciente_dni" attrs="{'invisible': [['tipo_cita','=','electrocardiograma']]}"/><!-- Altura -->
-                                <field name="paciente_dni" string="Código" attrs="{'invisible': [['tipo_cita','!=','electrocardiograma']]}"/><!-- EKG -->
+                                <field name="paciente_dni" string="Código" attrs="{'invisible': [('tipo_cita','!=','electrocardiograma')]}"/><!-- EKG -->
                                 <field name="paciente_edad"/><!-- Medicina,EKG -->
                                 <field name="paciente_sexo"/><!-- Medicina,Altura -->
                                 <field name="paciente_perfil_id"/><!-- Medicina,Altura -->
@@ -36,8 +36,8 @@
                             <group name="datos_paciente_right">
                                 <field name="paciente_empresa_id"/><!-- Medicina,Altura -->
                                 <field name="paciente_cargo"/><!-- Medicina,EKG -->
-                                <!--field name="area_trabajo" Altura,EKG -->
-                                <!--field name="experiencia" Altura -->
+                                <!-- field name area_trabajo Altura,EKG -->
+                                <!-- field name experiencia Altura -->
                                 <field name="altura_certificacion_tipo" string="Tipo de Certificación" widget="radio" options="{'horizontal':True}"/><!-- Altura -->
                                 <field name="tipo_examen_salud_ocupacional" widget="radio" options="{'horizontal':True}"/><!-- EKG -->
                             </group>
@@ -53,7 +53,7 @@
                             <group name="control_medico_right">
                                 <field name="auditado"/>
                                 <field name="revisado"/>
-                                <field name="evaluador" attrs="{'invisible': [['tipo_cita','!=','electrocardiograma']]}"/>
+                                <field name="evaluador" attrs="{'invisible': [('tipo_cita','!=','electrocardiograma')]}"/>
                             </group>
                         </group>
                         <notebook name="medicina_ocupacional"/>
@@ -64,7 +64,7 @@
                                     nolabel="1"
                                     widget="section_and_note_one2many"
                                     mode="tree,kanban"
-                                    context="{'default_cita_id': id, 'default_tipo_diagnostico_oido': 'bilateral'}">
+                                    context="{'default_cita_id': active_id, 'default_tipo_diagnostico_oido': 'bilateral'}">
                                     <form>
                                         <sheet string="Diagnóstico de la cita">
                                             <group>
@@ -96,7 +96,7 @@
                                     nolabel="1"
                                     widget="section_and_note_one2many"
                                     mode="tree,kanban"
-                                    context="{'default_cita_id': id, 'default_tipo_diagnostico_oido': 'izquierdo'}">
+                                    context="{'default_cita_id': active_id, 'default_tipo_diagnostico_oido': 'izquierdo'}">
                                     <form>
                                         <sheet string="Diagnóstico de la cita">
                                             <group>
@@ -128,7 +128,7 @@
                                     nolabel="1"
                                     widget="section_and_note_one2many"
                                     mode="tree,kanban"
-                                    context="{'default_cita_id': id, 'default_tipo_diagnostico_oido': 'derecho'}">
+                                    context="{'default_cita_id': active_id, 'default_tipo_diagnostico_oido': 'derecho'}">
                                     <form>
                                         <sheet string="Diagnóstico del oído derecho">
                                             <group>

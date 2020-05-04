@@ -178,7 +178,6 @@
 	    <record model="ir.actions.act_window" id="medicina_cita_action_medicina">
 		    <field name="name">Cita - Medicina</field>
 		    <field name="res_model">medicina.cita</field>
-		    <field name="view_type">form</field>
 		    <field name="view_mode">tree,form</field>
 		    <field name="context">{'default_tipo_cita':'medicina'}</field>
             <field name="domain">[('tipo_cita','=','medicina')]</field>
@@ -187,8 +186,6 @@
 	    <record model="ir.actions.act_window" id="medicina_cita_action_dermatologia">
 		    <field name="name">Cita - Dermatología</field>
 		    <field name="res_model">medicina.cita</field>
-		    <field name="view_type">form</field>
-		    <field name="view_mode">tree,form</field>
 		    <field name="context">{'default_tipo_cita':'dermatologia'}</field>
             <field name="domain">[('tipo_cita','=','dermatologia')]</field>
 	    </record>
@@ -196,7 +193,6 @@
 	    <record model="ir.actions.act_window" id="medicina_cita_action_grandes_alturas">
 		    <field name="name">Cita - Anexo N°16 A</field>
 		    <field name="res_model">medicina.cita</field>
-		    <field name="view_type">form</field>
 		    <field name="view_mode">tree,form</field>
 		    <field name="context">{'default_tipo_cita':'grandes_alturas'}</field>
             <field name="domain">[('tipo_cita','=','grandes_alturas')]</field>
@@ -205,7 +201,6 @@
 	    <record model="ir.actions.act_window" id="medicina_cita_action_altura">
 		    <field name="name">Cita - Certificación de altura</field>
 		    <field name="res_model">medicina.cita</field>
-		    <field name="view_type">form</field>
 		    <field name="view_mode">tree,form</field>
 		    <field name="context">{'default_tipo_cita':'altura'}</field>
             <field name="domain">[('tipo_cita','=','altura')]</field>
@@ -214,7 +209,6 @@
 	    <record model="ir.actions.act_window" id="medicina_cita_action_confinados">
 		    <field name="name">Cita - Trabajo en espacios confinados</field>
 		    <field name="res_model">medicina.cita</field>
-		    <field name="view_type">form</field>
 		    <field name="view_mode">tree,form</field>
 		    <field name="context">{'default_tipo_cita':'confinados'}</field>
             <field name="domain">[('tipo_cita','=','confinados')]</field>
@@ -223,7 +217,6 @@
 	    <record model="ir.actions.act_window" id="medicina_cita_action_electrocardiograma">
 		    <field name="name">Cita - Electrocardiograma</field>
 		    <field name="res_model">medicina.cita</field>
-		    <field name="view_type">form</field>
 		    <field name="view_mode">tree,form</field>
 		    <field name="context">{'default_tipo_cita':'electrocardiograma'}</field>
             <field name="domain">[('tipo_cita','=','electrocardiograma')]</field>
@@ -232,7 +225,6 @@
 	    <record model="ir.actions.act_window" id="medicina_cita_action_oftalmologia">
 		    <field name="name">Cita - Oftalmología</field>
 		    <field name="res_model">medicina.cita</field>
-		    <field name="view_type">form</field>
 		    <field name="view_mode">tree,form</field>
 		    <field name="context">{'default_tipo_cita':'oftalmologia'}</field>
             <field name="domain">[('tipo_cita','=','oftalmologia')]</field>
@@ -241,7 +233,6 @@
 	    <record model="ir.actions.act_window" id="medicina_cita_action_audiometria">
 		    <field name="name">Cita - Audiometría</field>
 		    <field name="res_model">medicina.cita</field>
-		    <field name="view_type">form</field>
 		    <field name="view_mode">tree,form</field>
 		    <field name="context">{'default_tipo_cita':'audiometria'}</field>
             <field name="domain">[('tipo_cita','=','audiometria')]</field>
@@ -250,7 +241,6 @@
 	    <record model="ir.actions.act_window" id="medicina_cita_action_psicologia">
 		    <field name="name">Cita - Psicología</field>
 		    <field name="res_model">medicina.cita</field>
-		    <field name="view_type">form</field>
 		    <field name="view_mode">tree,form</field>
 		    <field name="context">{'default_tipo_cita':'psicologia'}</field>
             <field name="domain">[('tipo_cita','=','psicologia')]</field>
@@ -259,7 +249,6 @@
 	    <record model="ir.actions.act_window" id="medicina_cita_action_odontograma">
 		    <field name="name">Cita - Odontograma</field>
 		    <field name="res_model">medicina.cita</field>
-		    <field name="view_type">form</field>
 		    <field name="view_mode">tree,form</field>
 		    <field name="context">{'default_tipo_cita':'odontograma'}</field>
             <field name="domain">[('tipo_cita','=','odontograma')]</field>
@@ -268,7 +257,6 @@
 	    <record model="ir.actions.act_window" id="medicina_cita_action_musculo_esqueletico">
 		    <field name="name">Cita - Músculo-esquelético</field>
 		    <field name="res_model">medicina.cita</field>
-		    <field name="view_type">form</field>
 		    <field name="view_mode">tree,form</field>
 		    <field name="context">{'default_tipo_cita':'musculo_esqueletico'}</field>
             <field name="domain">[('tipo_cita','=','musculo_esqueletico')]</field>
@@ -277,7 +265,6 @@
 	    <record model="ir.actions.act_window" id="medicina_cita_action_radiologia">
 		    <field name="name">Cita - Informe de tórax</field>
 		    <field name="res_model">medicina.cita</field>
-		    <field name="view_type">form</field>
 		    <field name="view_mode">tree,form</field>
 		    <field name="context">{'default_tipo_cita':'radiologia'}</field>
             <field name="domain">[('tipo_cita','=','radiologia')]</field>
@@ -286,7 +273,6 @@
 	    <record model="ir.actions.act_window" id="medicina_cita_action_espirometria">
 		    <field name="name">Cita - Espirometría</field>
 		    <field name="res_model">medicina.cita</field>
-		    <field name="view_type">form</field>
 		    <field name="view_mode">tree,form</field>
 		    <field name="context">{'default_tipo_cita':'espirometria'}</field>
             <field name="domain">[('tipo_cita','=','espirometria')]</field>
@@ -295,7 +281,6 @@
 	    <record model="ir.actions.act_window" id="medicina_cita_action_tsr">
 		    <field name="name">Cita - Test de Sintomático Respiratorio</field>
 		    <field name="res_model">medicina.cita</field>
-		    <field name="view_type">form</field>
 		    <field name="view_mode">tree,form</field>
 		    <field name="context">{'default_tipo_cita':'tsr'}</field>
             <field name="domain">[('tipo_cita','=','tsr')]</field>
@@ -304,7 +289,6 @@
 	    <record model="ir.actions.act_window" id="medicina_cita_action_laboratorio">
 		    <field name="name">Cita - Laboratorio</field>
 		    <field name="res_model">medicina.cita</field>
-		    <field name="view_type">form</field>
 		    <field name="view_mode">tree,form</field>
 		    <field name="context">{'default_tipo_cita':'laboratorio'}</field>
             <field name="domain">[('tipo_cita','=','laboratorio')]</field>

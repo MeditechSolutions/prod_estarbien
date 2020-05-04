@@ -12,6 +12,7 @@ Módulo de personalización de la Clínica Estarbien en Odoo
     'website': 'http://www.mstech.pe',
     'depends' : ['base','basic_hms'],
     'data': [
+        'security/ir.model.access.csv',
         'views/medicina_cita_views.xml',
         'views/medicina_cita_medicina_views.xml',
         'views/medicina_cita_dermatologia_views.xml',
@@ -28,7 +29,6 @@ Módulo de personalización de la Clínica Estarbien en Odoo
         'views/medicina_cita_espirometria_views.xml',
         'views/medicina_cita_tsr_views.xml',
         'views/medicina_cita_laboratorio_views.xml',
-        'security/ir.model.access.csv',
     ],
     'installable': True,
     'auto_install': False,

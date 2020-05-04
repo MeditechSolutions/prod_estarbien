@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-	<data>
 	    <record id="view_medicina_cita_form" model="ir.ui.view">
             <field name="name">medicina.cita.form</field>
             <field name="model">medicina.cita</field>
@@ -311,5 +310,4 @@
         <menuitem name="Espirometría" id="medicina_ocupacional_espirometria" parent="medicina_ocupacional" action="medicina_cita_action_espirometria" sequence="34"/>
         <menuitem name="Test de Sintomático Respiratorio" id="medicina_ocupacional_tsr" parent="medicina_ocupacional" action="medicina_cita_action_tsr" sequence="36"/>
         <menuitem name="Laboratorio" id="medicina_ocupacional_laboratorio" parent="medicina_ocupacional" action="medicina_cita_action_laboratorio" sequence="38"/>
-	</data>
 </odoo>

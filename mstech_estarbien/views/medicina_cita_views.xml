@@ -36,8 +36,8 @@
                             <group name="datos_paciente_right">
                                 <field name="paciente_empresa_id"/><!-- Medicina,Altura -->
                                 <field name="paciente_cargo"/><!-- Medicina,EKG -->
-                                <!--<field name="area_trabajo"/>--><!-- Altura,EKG -->
-                                <!--<field name="experiencia"/>--><!-- Altura -->
+                                <!--field name="area_trabajo"/--!-- Altura,EKG -->
+                                <!--field name="experiencia"/--!-- Altura -->
                                 <field name="altura_certificacion_tipo" string="Tipo de Certificación" widget="radio" options="{'horizontal':True}"/><!-- Altura -->
                                 <field name="tipo_examen_salud_ocupacional" widget="radio" options="{'horizontal':True}"/><!-- EKG -->
                             </group>
@@ -57,7 +57,6 @@
                             </group>
                         </group>
                         <notebook name="medicina_ocupacional"/>
-			<field name="audiometria_bilateral" invisible="1"/>
                         <group name="cita_diagnostico">
                             <group name="cita_diagnostico_bilateral" colspan="2" string="Diagnóstico" attrs="{'invisible':[('audiometria_bilateral','=',False)]}">
                                 <field
@@ -157,12 +156,14 @@
                             </group>
                         </group>
                         <group name="cita_historial" string="Historial">
+                            <field name="audiometria_bilateral" invisible="1"/>
                             <field name="historial_paciente" nolabel="1"/>
                         </group>
                     </sheet>
                 </form>
             </field>
 	    </record>
+        
 		<record id="view_medicina_cita_tree" model="ir.ui.view">
             <field name="name">medicina.cita.tree</field>
             <field name="model">medicina.cita</field>

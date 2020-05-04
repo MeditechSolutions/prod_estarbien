@@ -26,7 +26,7 @@ Módulo de personalización de la Clínica Estarbien en Odoo
         'views/medicina_cita_odontograma_views.xml',
         'views/medicina_cita_musculo_esqueletico_views.xml',
         'views/medicina_cita_radiologia_views.xml',
-        'views/medicina_cita_espirometria_views.xml',
+        #'views/medicina_cita_espirometria_views.xml',
         'views/medicina_cita_tsr_views.xml',
         'views/medicina_cita_laboratorio_views.xml',
     ],

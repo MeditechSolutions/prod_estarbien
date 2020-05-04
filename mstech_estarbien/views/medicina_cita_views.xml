@@ -36,8 +36,8 @@
                             <group name="datos_paciente_right">
                                 <field name="paciente_empresa_id"/><!-- Medicina,Altura -->
                                 <field name="paciente_cargo"/><!-- Medicina,EKG -->
-                                <!--field name="area_trabajo"/--!-- Altura,EKG -->
-                                <!--field name="experiencia"/--!-- Altura -->
+                                <!--field name="area_trabajo" Altura,EKG -->
+                                <!--field name="experiencia" Altura -->
                                 <field name="altura_certificacion_tipo" string="Tipo de Certificación" widget="radio" options="{'horizontal':True}"/><!-- Altura -->
                                 <field name="tipo_examen_salud_ocupacional" widget="radio" options="{'horizontal':True}"/><!-- EKG -->
                             </group>

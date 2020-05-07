@@ -10,7 +10,7 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base_vat.view_partner_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//span[@class='o_vat_label']" position="replace">
+                <xpath expr="/form/div/span/span" position="replace">
                     <span class="o_vat_label">Doc. de Identidad</span>
                 </xpath>
                 

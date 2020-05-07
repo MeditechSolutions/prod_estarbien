@@ -5,12 +5,16 @@
             <field name="active" eval="False"/>
         </record>
         
+        <record id="base_vat.view_partner_form" model="ir.ui.view">
+            <field name="active" eval="False"/>
+        </record>
+        
         <record id="view_partner_form_mouse_ruc_validation" model="ir.ui.view">
             <field name="name">res.partner.vat.inherit.mouse_ruc_validation</field>
             <field name="model">res.partner</field>
-            <field name="inherit_id" ref="base_vat.view_partner_form"/>
+            <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
-                <xpath expr="/form/div/span/span" position="replace">
+                <xpath expr="//span[hasclass('o_vat_label')]" position="replace">
                     <span class="o_vat_label">Doc. de Identidad</span>
                 </xpath>
                 

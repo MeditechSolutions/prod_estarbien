@@ -92,7 +92,7 @@
                             <field name="dermatologia_fotoprotector_recomendado" string="Fotoprotector a usar"/>
                         </group>
                     </page>
-                    <page name="dermatologia_screen_dermatologico" string="Screen dermatológico">
+                    <page name="dermatologia_screen_dermatologico" string="Screen dermatológico" attrs="{'invisible': [('tipo_cita','!=','dermatologia')]}">
                         <group name="dermatologia_screen_dermatologico_trabajador" string="Para el trabajador" col="1">
                             <table name="dermatologia_screen_dermatologico_trabajador" style="width:100%">
                                 <thead name="dermatologia_screen_dermatologico_trabajador">

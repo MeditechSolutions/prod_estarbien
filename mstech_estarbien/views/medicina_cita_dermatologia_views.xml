@@ -8,7 +8,7 @@
             <field name="priority" eval="42"/>
             <field name="arch" type="xml">
                 <xpath expr="//notebook[@name='medicina_ocupacional']" position="inside">
-                    <page name="dermatologia_piel_tamizaje" string="Piel y tamizaje">
+                    <page name="dermatologia_piel_tamizaje" string="Piel y tamizaje" attrs="{'invisible': [('tipo_cita','!=','dermatologia')]}">
                         <group name="dermatologia_frankenstein">
                         </group>
                         <group name="dermatologia_tamizaje_observaciones" string="Observaciones">

@@ -8,7 +8,7 @@
             <field name="priority" eval="64"/>
             <field name="arch" type="xml">
                 <xpath expr="//notebook[@name='medicina_ocupacional']" position="inside">
-                    <page name="radiologia" string="Informe de tórax">
+                    <page name="radiologia" string="Informe de tórax" attrs="{'invisible': [('tipo_cita','!=','radiologia')]}">
                         <group name="radiologia_comentario" col="1">
                             <label name="radiologia_comentario_label" for="radiologia_comentario" string="Comentarios"/>
                             <field name="radiologia_comentario" nolabel="1"/>

@@ -8,7 +8,7 @@
             <field name="priority" eval="60"/>
             <field name="arch" type="xml">
                 <xpath expr="//notebook[@name='medicina_ocupacional']" position="inside">
-                    <page name="musculo_esqueletico" string="Evaluación músculo-esquelética">
+                    <page name="musculo_esqueletico" string="Evaluación músculo-esquelética" attrs="{'invisible': [('tipo_cita','!=','musculo_esqueletico')]}">
                         <group name="musculo_esqueletico" string="Aptitud de espalda">
                         <!--<group name="musculo_esqueletico_flexibilidad_fuerza">-->
                             <table name="musculo_esqueletico_flexibilidad_fuerza" style="width:100%">

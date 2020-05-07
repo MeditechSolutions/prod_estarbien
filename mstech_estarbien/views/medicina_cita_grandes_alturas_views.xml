@@ -8,7 +8,7 @@
             <field name="priority" eval="44"/>
             <field name="arch" type="xml">
                 <xpath expr="//notebook[@name='medicina_ocupacional']" position="inside">
-                    <page name="grandes_alturas" string="Evaluación anexo N°16 A">
+                    <page name="grandes_alturas" string="Evaluación anexo N°16 A" attrs="{'invisible': [('tipo_cita','!=','grandes_alturas')]}">
                         <group name="grandes_alturas_funciones_vitales" string="Funciones vitales" col="1">
                             <table name="grandes_alturas_funciones_vitales" style="width:100%">
                                 <thead name="grandes_alturas_funciones_vitales">

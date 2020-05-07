@@ -8,7 +8,7 @@
             <field name="priority" eval="56"/>
             <field name="arch" type="xml">
                 <xpath expr="//notebook[@name='medicina_ocupacional']" position="inside">
-                    <page name="informe_psicologico" string="Psicología">
+                    <page name="informe_psicologico" string="Psicología" attrs="{'invisible': [('tipo_cita','!=','psicologia')]}">
                         <group name="informe_psicologico_tecnicas_instrumentos" string="Técnicas e instrumentos utilizados" col="3">
                             <group name="informe_psicologico_tecnicas_instrumentos_left" col="1">
                                 <field name="psicologico_observacion" string="Observación"/>

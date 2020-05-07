@@ -8,7 +8,7 @@
             <field name="priority" eval="72"/>
             <field name="arch" type="xml">
                 <xpath expr="//notebook[@name='medicina_ocupacional']" position="inside">
-                    <page name="laboratorio" string="Laboratorio">
+                    <page name="laboratorio" string="Laboratorio" attrs="{'invisible': [('tipo_cita','!=','laboratorio')]}">
                         <group name="laboratorio_tests">
                             <group name="laboratorio_tests_hematologia_diferencial_bioquimica" col="1">
                                 <table name="laboratorio_tests_hematologia_diferencial_bioquimica" style="width:100%">

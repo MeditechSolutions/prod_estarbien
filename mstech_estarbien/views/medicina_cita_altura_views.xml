@@ -8,7 +8,7 @@
             <field name="priority" eval="46"/>
             <field name="arch" type="xml">
                 <xpath expr="//notebook[@name='medicina_ocupacional']" position="inside">
-                    <page name="altura_certificacion" string="Certificación para altura">
+                    <page name="altura_certificacion" string="Certificación para altura" attrs="{'invisible': [('tipo_cita','!=','altura')]}">
                         <group name="altura_certificacion_antecedentes_medicos" string="Antecedentes (del registro médico)">
                             <group name="altura_certificacion_antecedentes_medicos_left" col="1">
                                 <field name="altura_acrofobia" string="Acrofobia (temor a las alturas)"/>

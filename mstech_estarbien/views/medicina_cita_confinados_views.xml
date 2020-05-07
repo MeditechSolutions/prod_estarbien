@@ -8,7 +8,7 @@
             <field name="priority" eval="48"/>
             <field name="arch" type="xml">
                 <xpath expr="//notebook[@name='medicina_ocupacional']" position="inside">
-                    <page name="espacios_confinados" string="Trabajo en espacios confinados">
+                    <page name="espacios_confinados" string="Trabajo en espacios confinados" attrs="{'invisible': [('tipo_cita','!=','confinados')]}">
                         <group name="espacios_confinados_anamnesis">
                             <group name="espacios_confinados_anamnesis_left" col="1">
                                 <field name="confinados_enfermedades_alteracion_consciencia" string="Todas las enfermedades que produzcan alteración de la consciencia sin importar su causa e independencia de su tratamiento"/>

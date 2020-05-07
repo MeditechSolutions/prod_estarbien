@@ -8,7 +8,7 @@
             <field name="priority" eval="52"/>
             <field name="arch" type="xml">
                 <xpath expr="//notebook[@name='medicina_ocupacional']" position="inside">
-                    <page name="evaluacion_oftalmologica" string="Evaluación oftalmológica">
+                    <page name="evaluacion_oftalmologica" string="Evaluación oftalmológica" attrs="{'invisible': [('tipo_cita','!=','oftalmologia')]}">
                         <group name="evaluacion_oftalmologica_antecedentes" string="Antecedentes" col="3">
                             <group name="evaluacion_oftalmologica_antecedentes_left">
                                 <field name="oftalmologia_hipertension_arterial" string="HTA"/>

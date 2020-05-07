@@ -8,7 +8,7 @@
             <field name="priority" eval="54"/>
             <field name="arch" type="xml">
                 <xpath expr="//notebook[@name='medicina_ocupacional']" position="inside">
-                    <page name="ficha_audiologica" string="Ficha audiológica">
+                    <page name="ficha_audiologica" string="Ficha audiológica" attrs="{'invisible': [('tipo_cita','!=','audiometria')]}">
                         <group name="ficha_audiologica_protectores_ruido">
                             <table name="ficha_audiologica_protectores_ruido" style="width:100%">
                                 <thead name="ficha_audiologica_protectores_ruido">

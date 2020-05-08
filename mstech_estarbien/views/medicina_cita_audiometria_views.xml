@@ -10,6 +10,18 @@
                 <xpath expr="/form/sheet" position="attributes">
                     <attribute name="string">Audiometría</attribute>
                 </xpath>
+                <xpath expr="//field[@name='historial_paciente']" position="before">
+                    <field name="audiometria_bilateral" invisible="1"/>
+                </xpath>
+                <xpath expr="//group[@name='cita_diagnostico_bilateral']" position="attributes">
+                    <attribute name="attrs">{'invisible':[('audiometria_bilateral','=',False)]}</attribute>
+                </xpath>
+                <xpath expr="//group[@name='cita_diagnostico_oido_izquierdo']" position="attributes">
+                    <attribute name="attrs">{'invisible':[('audiometria_bilateral','=',True)]}</attribute>
+                </xpath>
+                <xpath expr="//group[@name='cita_diagnostico_oido_derecho']" position="attributes">
+                    <attribute name="attrs">{'invisible':[('audiometria_bilateral','=',True)]}</attribute>
+                </xpath>
                 <xpath expr="//notebook[@name='medicina_ocupacional']" position="inside">
                     <page name="ficha_audiologica" string="Ficha audiológica" attrs="{'invisible': [('tipo_cita','!=','audiometria')]}">
                         <group name="ficha_audiologica_protectores_ruido">

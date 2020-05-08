@@ -38,7 +38,7 @@
                                 <field name="paciente_cargo"/><!-- Medicina,EKG -->
                                 <!-- field name area_trabajo Altura,EKG -->
                                 <!-- field name experiencia Altura -->
-                                <field name="altura_certificacion_tipo" string="Tipo de Certificación" widget="radio" options="{'horizontal':True}"/><!-- Altura -->
+                                
                                 <field name="tipo_examen_salud_ocupacional" widget="radio" options="{'horizontal':True}"/><!-- EKG -->
                             </group>
                         </group>
@@ -58,7 +58,7 @@
                         </group>
                         <notebook name="medicina_ocupacional"/>
                         <group name="cita_diagnostico">
-                            <group name="cita_diagnostico_bilateral" colspan="2" string="Diagnóstico" attrs="{'invisible':[('audiometria_bilateral','=',False)]}">
+                            <group name="cita_diagnostico_bilateral" colspan="2" string="Diagnóstico">
                                 <field
                                     name="diagnostico_ids"
                                     nolabel="1"
@@ -90,7 +90,7 @@
                                     </tree>
                                 </field>
                             </group>
-                            <group name="cita_diagnostico_oido_izquierdo" string="Diagnóstico oído izquierdo" attrs="{'invisible':[('audiometria_bilateral','=',True)]}">
+                            <group name="cita_diagnostico_oido_izquierdo" string="Diagnóstico oído izquierdo" attrs="{'invisible': True}">
                                 <field
                                     name="diagnostico_oido_izquierdo_ids"
                                     nolabel="1"
@@ -122,7 +122,7 @@
                                     </tree>
                                 </field>
                             </group>
-                            <group name="cita_diagnostico_oido_derecho" string="Diagnóstico oído derecho" attrs="{'invisible':[('audiometria_bilateral','=',True)]}">
+                            <group name="cita_diagnostico_oido_derecho" string="Diagnóstico oído derecho" attrs="{'invisible': True}">
                                 <field
                                     name="diagnostico_oido_derecho_ids"
                                     nolabel="1"
@@ -156,7 +156,6 @@
                             </group>
                         </group>
                         <group name="cita_historial" string="Historial">
-                            <field name="audiometria_bilateral" invisible="1"/>
                             <field name="historial_paciente" nolabel="1"/>
                         </group>
                     </sheet>

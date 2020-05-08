@@ -10,6 +10,9 @@
                 <xpath expr="/form/sheet" position="attributes">
                     <attribute name="string">Certificación para trabajo en altura</attribute>
                 </xpath>
+                <xpath expr="//field[@name='tipo_examen_salud_ocupacional']" position="before">
+                    <field name="altura_certificacion_tipo" string="Tipo de Certificación" widget="radio" options="{'horizontal':True}"/><!-- Altura -->
+                </xpath>
                 <xpath expr="//notebook[@name='medicina_ocupacional']" position="inside">
                     <page name="altura_certificacion" string="Certificación para altura" attrs="{'invisible': [('tipo_cita','!=','altura')]}">
                         <group name="altura_certificacion_antecedentes_medicos" string="Antecedentes (del registro médico)">

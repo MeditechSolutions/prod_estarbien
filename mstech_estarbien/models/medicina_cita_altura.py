@@ -55,3 +55,5 @@ class MedicinaCitaAltura(models.Model) :
     def _compute_altura_indice_masa_corporal(self):
         for rec in self:
             rec.altura_indice_masa_corporal = rec.altura_talla and rec.altura_peso / (rec.altura_talla ** 2) or 0.0
+    
+    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.altura''', relation='''medicina_cita_altura_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')

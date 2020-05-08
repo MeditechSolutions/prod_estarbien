@@ -34,3 +34,5 @@ class MedicinaCitaGrandesAlturas(models.Model) :
     grandes_alturas_problemas_oftalmologicos = fields.Boolean(string='''Problemas oftalmológicos: retinopatía, glaucoma, otros''')
     grandes_alturas_problemas_respiratorios = fields.Boolean(string='''Problemas respiratorios: asma, EPOC, otros''')
     grandes_alturas_saturacion_oxigeno = fields.Float(string='''Saturación de oxígeno (grandes alturas)''')
+    
+    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.grandes_alturas''', relation='''medicina_cita_grandes_alturas_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')

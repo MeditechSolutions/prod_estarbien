@@ -55,3 +55,5 @@ class MedicinaCitaElectrocardiograma(models.Model) :
     ekg_varices_miembros_inferiores = fields.Boolean(string='''Várices en miembros inferiores''')
     archivo_adjunto_cardiologico = fields.Binary(string='''Archivo''')
     archivo_adjunto_cardiologico_filename = fields.Char(string='''Filename for archivo_adjunto_informe_cardiologico''')
+    
+    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.electrocardiograma''', relation='''medicina_cita_electrocardiograma_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')

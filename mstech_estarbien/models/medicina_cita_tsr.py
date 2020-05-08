@@ -19,3 +19,5 @@ class MedicinaCitaTSR(models.Model) :
     test_sr_tos_mas_15_dias = fields.Boolean(string='''Tos por más de 15 días''')
     test_sr_tos_sangre = fields.Boolean(string='''Tos con sangre''')
     test_sr_tuberculosis = fields.Boolean(string='''Tuberculosis''')
+    
+    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.tsr''', relation='''medicina_cita_tsr_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')

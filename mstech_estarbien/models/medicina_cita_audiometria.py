@@ -196,3 +196,5 @@ class MedicinaCitaAudiometria(models.Model) :
     cie_10_audiometria_recomendaciones_bilateral = fields.Text(string='''Recomendaciones CIE-10 de la audiometría bilateral''')
     cie_10_audiometria_recomendaciones_derecho = fields.Text(string='''Recomendaciones CIE-10 de la audiometría del oído derecho''')
     cie_10_audiometria_recomendaciones_izquierdo = fields.Text(string='''Recomendaciones CIE-10 de la audiometría del oído izquierdo''')
+    
+    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.audiometria''', relation='''medicina_cita_audiometria_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')

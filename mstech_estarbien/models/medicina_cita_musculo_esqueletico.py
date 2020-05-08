@@ -203,3 +203,5 @@ class MedicinaCitaMusculoEsqueletico(models.Model) :
     def _compute_musculo_esqueletico_rangos_articulares_total(self):
         for record in self :
             record.musculo_esqueletico_rangos_articulares_total = int(record.musculo_esqueletico_abducacion_0_180_puntos or 1) + int(record.musculo_esqueletico_abducacion_0_60_puntos or 1) + int(record.musculo_esqueletico_rotacion_0_90_puntos or 1) + int(record.musculo_esqueletico_rotacion_interna_puntos or 1)
+    
+    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.musculo_esqueletico''', relation='''medicina_cita_musculo_esqueletico_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')

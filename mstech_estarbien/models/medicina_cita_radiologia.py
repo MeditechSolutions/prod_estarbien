@@ -11,3 +11,5 @@ class MedicinaCitaRadiologia(models.Model) :
     radiologia_comentario = fields.Text(string='''Comentario (radiología)''')
     archivo_adjunto_radiologia_1 = fields.Binary(string='''New Archivo''')
     archivo_adjunto_radiologia_1_filename = fields.Char(string='''Filename for archivo_adjunto_radiologia_1''')
+    
+    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.radiologia''', relation='''medicina_cita_radiologia_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')

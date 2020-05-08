@@ -83,3 +83,5 @@ class MedicinaCitaOftalmologia(models.Model) :
     archivo_adjunto_oftalmologico_2 = fields.Binary(string='''Archivo adjunto 2 (oftalmológico)''')
     archivo_adjunto_oftalmologico_2_filename = fields.Char(string='''Filename for archivo_adjunto_oftalmologico_2''')
     cie_10_oftalmologia_tipo_diagnostico = fields.Selection(string='''Tipo de diagnóstico CIE-10 oftalmológico''',selection=[("normal","Normal"),("anormal","Anormal")])
+    
+    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.oftalmologia''', relation='''medicina_cita_oftalmologia_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')

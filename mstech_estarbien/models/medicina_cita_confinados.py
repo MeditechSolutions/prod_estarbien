@@ -49,3 +49,5 @@ class MedicinaCitaConfinados(models.Model) :
     def _compute_confinados_indice_masa_corporal(self):
         for rec in self:
             rec.confinados_indice_masa_corporal = rec.confinados_talla and rec.confinados_peso / ((rec.confinados_talla / 100.0) ** 2) or 0.0
+    
+    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.confinados''', relation='''medicina_cita_confinados_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')

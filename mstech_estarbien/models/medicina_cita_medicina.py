@@ -64,3 +64,5 @@ class MedicinaCitaMedicina(models.Model) :
     medicina_sistema_linfatico_razon = fields.Text(string='''Razón''')
     medicina_sistema_nervioso = fields.Selection(string='''Sistema Nervioso''',selection=[("normal","Normal"),("anormal","Anormal"),("diferido","Diferido")])
     medicina_sistema_nervioso_razon = fields.Text(string='''Razón''')
+    
+    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.medicina''', relation='''medicina_cita_medicina_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')

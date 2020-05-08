@@ -63,3 +63,5 @@ class MedicinaCitaLaboratorio(models.Model) :
     archivo_adjunto_laboratorio_1_filename = fields.Char(string='''Filename for archivo_adjunto_laboratorio_1''')
     archivo_adjunto_laboratorio_2 = fields.Binary(string='''Archivo adjunto 2 (laboratorio)''')
     archivo_adjunto_laboratorio_2_filename = fields.Char(string='''Filename for archivo_adjunto_laboratorio_2''')
+    
+    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.laboratorio''', relation='''medicina_cita_laboratorio_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')

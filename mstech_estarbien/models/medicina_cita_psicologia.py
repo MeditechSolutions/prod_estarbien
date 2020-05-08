@@ -56,3 +56,5 @@ class MedicinaCitaPsicologia(models.Model) :
     archivo_adjunto_psicologico_1_filename = fields.Char(string='''Filename for archivo_adjunto_psicologia_1''')
     archivo_adjunto_psicologico_2 = fields.Binary(string='''New Archivo''')
     archivo_adjunto_psicologico_2_filename = fields.Char(string='''Filename for archivo_adjunto_psicologia_2''')
+    
+    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.psicologia''', relation='''medicina_cita_psicologia_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')

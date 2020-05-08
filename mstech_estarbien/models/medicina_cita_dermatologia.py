@@ -33,3 +33,5 @@ class MedicinaCitaDermatologia(models.Model) :
     dermatologia_medicacion_cuestionario = fields.Boolean(string='''¿Está tomando alguna medicación?''')
     dermatologia_rinitis_asma_cuestionario = fields.Boolean(string='''¿Sufre de rinitis alérgica o asma?''')
     dermatologia_tamizaje_observaciones = fields.Text(string='''Observaciones de tamizaje (dermatología)''')
+    
+    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.dermatologia''', relation='''medicina_cita_dermatologia_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+	    <record id="view_medicina_cita_radiologia_form" model="ir.ui.view">
+            <field name="name">medicina.cita.radiologia.form</field>
+            <field name="model">medicina.cita.radiologia</field>
+            <field name="inherit_id" ref="view_medicina_cita_form"/>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet" position="attributes">
+                    <attribute name="string">Radiología</attribute>
+                </xpath>
+                <xpath expr="//notebook[@name='medicina_ocupacional']" position="inside">
+                    <page name="radiologia" string="Informe de tórax" attrs="{'invisible': [('tipo_cita','!=','radiologia')]}">
+                        <group name="radiologia_comentario" col="1">
+                            <label name="radiologia_comentario_label" for="radiologia_comentario" string="Comentarios"/>
+                            <field name="radiologia_comentario" nolabel="1"/>
+                        </group>
+                        <group name="radiologia_adjunto">
+                            <field filename="archivo_adjunto_radiologia_1_filename" name="archivo_adjunto_radiologia_1" string="Archivo"/>
+                            <field invisible="1" name="archivo_adjunto_radiologia_1_filename"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+        
+		<record id="view_medicina_cita_radiologia_tree" model="ir.ui.view">
+            <field name="name">medicina.cita.radiologia.tree</field>
+            <field name="model">medicina.cita.radiologia</field>
+            <field name="inherit_id" ref="view_medicina_cita_tree"/>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <xpath expr="/tree" position="attributes">
+                    <attribute name="string">Radiología</attribute>
+                </xpath>
+            </field>
+	    </record>
+        
+	    <record model="ir.actions.act_window" id="medicina_cita_action_radiologia">
+		    <field name="name">Cita - Informe de tórax</field>
+		    <field name="res_model">medicina.cita.radiologia</field>
+		    <field name="view_mode">tree,form</field>
+		    <field name="context">{'default_tipo_cita':'radiologia'}</field>
+            <field name="domain">[('tipo_cita','=','radiologia')]</field>
+	    </record>
+        
+        <menuitem name="Radiología" id="medicina_ocupacional_radiologia" parent="medicina_ocupacional" action="medicina_cita_action_radiologia" sequence="32"/>
+	</data>
+</odoo>

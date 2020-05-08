@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+	    <record id="view_medicina_cita_form" model="ir.ui.view">
+            <field name="name">medicina.cita.form</field>
+            <field name="model">medicina.cita</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet string="Cita">
+                        <div name="name" class="oe_title" invisible="1">
+                            <h1 name="name">
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group name="datos_cita">
+                            <group name="datos_cita_left">
+                                <field name="tipo_cita" string="Tipo de cita" invisible="1"/>
+                                <field name="fecha_cita" string="Fecha de la cita"/>
+                                <field name="paciente_id" string="Paciente"/>
+                            </group>
+                            <group name="datos_cita_right">
+                                <field name="atencion_inicio" string="Inicio de la atención"/>
+                                <field name="atencion_fin" string="Fin de la atención"/>
+                            </group>
+                        </group>
+                        <group name="datos_paciente">
+                            <group name="datos_paciente_left">
+                                <field name="fecha_cita"/><!-- TODO -->
+                                <field name="paciente_apellidos_nombres"/><!-- TODO -->
+                                <field name="paciente_dni" attrs="{'invisible': [['tipo_cita','=','electrocardiograma']]}"/><!-- Altura -->
+                                <field name="paciente_dni" string="Código" attrs="{'invisible': [('tipo_cita','!=','electrocardiograma')]}"/><!-- EKG -->
+                                <field name="paciente_edad"/><!-- Medicina,EKG -->
+                                <field name="paciente_sexo"/><!-- Medicina,Altura -->
+                                <field name="paciente_perfil_id"/><!-- Medicina,Altura -->
+                            </group>
+                            <group name="datos_paciente_right">
+                                <field name="paciente_empresa_id"/><!-- Medicina,Altura -->
+                                <field name="paciente_cargo"/><!-- Medicina,EKG -->
+                                <!-- field name area_trabajo Altura,EKG -->
+                                <!-- field name experiencia Altura -->
+                                <field name="altura_certificacion_tipo" string="Tipo de Certificación" widget="radio" options="{'horizontal':True}"/><!-- Altura -->
+                                <field name="tipo_examen_salud_ocupacional" widget="radio" options="{'horizontal':True}"/><!-- EKG -->
+                            </group>
+                        </group>
+                        <!--
+                        -->
+                        <group name="control_medico">
+                            <group name="control_medico_left">
+                                <field name="auditor"/>
+                                <field name="responsable"/>
+                                <field name="medico"/>
+                            </group>
+                            <group name="control_medico_right">
+                                <field name="auditado"/>
+                                <field name="revisado"/>
+                                <field name="evaluador" attrs="{'invisible': [('tipo_cita','!=','electrocardiograma')]}"/>
+                            </group>
+                        </group>
+                        <notebook name="medicina_ocupacional"/>
+                        <group name="cita_diagnostico">
+                            <group name="cita_diagnostico_bilateral" colspan="2" string="Diagnóstico" attrs="{'invisible':[('audiometria_bilateral','=',False)]}">
+                                <field
+                                    name="diagnostico_ids"
+                                    nolabel="1"
+                                    widget="section_and_note_one2many"
+                                    mode="tree,kanban"
+                                    context="{'default_cita_id': active_id, 'default_tipo_diagnostico_oido': 'bilateral'}">
+                                    <form>
+                                        <sheet string="Diagnóstico de la cita">
+                                            <group>
+                                                <group>
+                                                    <field name="cita_id" invisible="1"/>
+                                                    <field name="tipo_diagnostico_oido" invisible="1"/>
+                                                    <field name="codigo_cie_10"/>
+                                                    <field name="descripcion"/>
+                                                    <field name="recomendaciones"/>
+                                                </group>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                    <tree string="Diagnóstico de la cita" editable="bottom">
+                                        <control>
+                                            <create string="Agregar una línea"/>
+                                        </control>
+                                        <field name="cita_id" invisible="1"/>
+                                        <field name="tipo_diagnostico_oido" invisible="1"/>
+                                        <field name="codigo_cie_10" string="CIE-10"/>
+                                        <field name="descripcion" string="Descripción"/>
+                                        <field name="recomendaciones" string="Recomendaciones"/>
+                                    </tree>
+                                </field>
+                            </group>
+                            <group name="cita_diagnostico_oido_izquierdo" string="Diagnóstico oído izquierdo" attrs="{'invisible':[('audiometria_bilateral','=',True)]}">
+                                <field
+                                    name="diagnostico_oido_izquierdo_ids"
+                                    nolabel="1"
+                                    widget="section_and_note_one2many"
+                                    mode="tree,kanban"
+                                    context="{'default_cita_id': active_id, 'default_tipo_diagnostico_oido': 'izquierdo'}">
+                                    <form>
+                                        <sheet string="Diagnóstico de la cita">
+                                            <group>
+                                                <group>
+                                                    <field name="cita_id" invisible="1"/>
+                                                    <field name="tipo_diagnostico_oido" invisible="1"/>
+                                                    <field name="codigo_cie_10"/>
+                                                    <field name="descripcion"/>
+                                                    <field name="recomendaciones"/>
+                                                </group>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                    <tree string="Diagnóstico de la cita" editable="bottom">
+                                        <control>
+                                            <create string="Agregar una línea"/>
+                                        </control>
+                                        <field name="cita_id" invisible="1"/>
+                                        <field name="tipo_diagnostico_oido" invisible="1"/>
+                                        <field name="codigo_cie_10" string="CIE-10"/>
+                                        <field name="descripcion" string="Descripción"/>
+                                        <field name="recomendaciones" string="Recomendaciones"/>
+                                    </tree>
+                                </field>
+                            </group>
+                            <group name="cita_diagnostico_oido_derecho" string="Diagnóstico oído derecho" attrs="{'invisible':[('audiometria_bilateral','=',True)]}">
+                                <field
+                                    name="diagnostico_oido_derecho_ids"
+                                    nolabel="1"
+                                    widget="section_and_note_one2many"
+                                    mode="tree,kanban"
+                                    context="{'default_cita_id': active_id, 'default_tipo_diagnostico_oido': 'derecho'}">
+                                    <form>
+                                        <sheet string="Diagnóstico del oído derecho">
+                                            <group>
+                                                <group>
+                                                    <field name="cita_id" invisible="1"/>
+                                                    <field name="tipo_diagnostico_oido" invisible="1"/>
+                                                    <field name="codigo_cie_10"/>
+                                                    <field name="descripcion"/>
+                                                    <field name="recomendaciones"/>
+                                                </group>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                    <tree string="Diagnóstico del oído derecho" editable="bottom">
+                                        <control>
+                                            <create string="Agregar una línea"/>
+                                        </control>
+                                        <field name="cita_id" invisible="1"/>
+                                        <field name="tipo_diagnostico_oido" invisible="1"/>
+                                        <field name="codigo_cie_10" string="CIE-10"/>
+                                        <field name="descripcion" string="Descripción"/>
+                                        <field name="recomendaciones" string="Recomendaciones"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </group>
+                        <group name="cita_historial" string="Historial">
+                            <field name="audiometria_bilateral" invisible="1"/>
+                            <field name="historial_paciente" nolabel="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+	    </record>
+        
+		<record id="view_medicina_cita_tree" model="ir.ui.view">
+            <field name="name">medicina.cita.tree</field>
+            <field name="model">medicina.cita</field>
+            <field name="arch" type="xml">
+                <tree string="Cita">
+                    <field name="tipo_cita" string="Tipo de cita"/>
+                    <field name="fecha_cita" string="Fecha de la cita"/>
+                    <field name="paciente_id" string="Paciente"/>
+                </tree>
+            </field>
+	    </record>
+        
+        <menuitem name="Ocupacional" id="medicina_ocupacional" parent="basic_hms.main_menu_hospital_management" sequence="1"/>
+    </data>
+</odoo>

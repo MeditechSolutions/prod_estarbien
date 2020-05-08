@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+	    <record id="view_medicina_cita_espirometria_form" model="ir.ui.view">
+            <field name="name">medicina.cita.espirometria.form</field>
+            <field name="model">medicina.cita.espirometria</field>
+            <field name="inherit_id" ref="view_medicina_cita_form"/>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet" position="attributes">
+                    <attribute name="string">Espirometría</attribute>
+                </xpath>
+            </field>
+        </record>
+        
+		<record id="view_medicina_cita_espirometria_tree" model="ir.ui.view">
+            <field name="name">medicina.cita.espirometria.tree</field>
+            <field name="model">medicina.cita.espirometria</field>
+            <field name="inherit_id" ref="view_medicina_cita_tree"/>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <xpath expr="/tree" position="attributes">
+                    <attribute name="string">Espirometría</attribute>
+                </xpath>
+            </field>
+	    </record>
+        
+	    <record model="ir.actions.act_window" id="medicina_cita_action_espirometria">
+		    <field name="name">Cita - Espirometría</field>
+		    <field name="res_model">medicina.cita.espirometria</field>
+		    <field name="view_mode">tree,form</field>
+		    <field name="context">{'default_tipo_cita':'espirometria'}</field>
+            <field name="domain">[('tipo_cita','=','espirometria')]</field>
+	    </record>
+        
+        <menuitem name="Espirometría" id="medicina_ocupacional_espirometria" parent="medicina_ocupacional" action="medicina_cita_action_espirometria" sequence="34"/>
+	</data>
+</odoo>

@@ -188,6 +188,7 @@ class MedicinaCitaAudiometria(models.Model) :
     archivo_adjunto_audiometria_3_filename = fields.Char(string='''Filename for archivo_adjunto_audiometria_3''')
     archivo_adjunto_audiometria_4 = fields.Binary(string='''New Archivo''')
     archivo_adjunto_audiometria_4_filename = fields.Char(string='''Filename for archivo_adjunto_audiometria_4''')
+    cie_10_audiometria_codigo_bilateral = fields.Char(string='''Código CIE-10 de la audiometría bilateral''')
     cie_10_audiometria_codigo_derecho = fields.Char(string='''Código CIE-10 de la audiometría del oído derecho''')
     cie_10_audiometria_codigo_izquierdo = fields.Char(string='''Código CIE-10 de la audiometría del oído izquierdo''')
     cie_10_audiometria_descripcion_bilateral = fields.Char(string='''Descripción CIE-10 de la audiometría bilateral''')

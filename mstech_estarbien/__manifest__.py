@@ -13,6 +13,7 @@ Módulo de personalización de la Clínica Estarbien en Odoo
     'depends' : ['base','basic_hms'],
     'data': [
         'security/ir.model.access.csv',
+        'views/medical_patient_views.xml.xml',
         'views/medicina_cita_views.xml',
         'views/medicina_cita_medicina_views.xml',
         'views/medicina_cita_dermatologia_views.xml',

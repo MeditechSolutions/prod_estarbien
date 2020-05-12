@@ -5,6 +5,7 @@ from odoo.exceptions import UserError, ValidationError, Warning
 
 class MedicinaCitaAlturaHistoria(models.Model) :
     _name = 'medicina.cita.altura.historia'
+    _inherit = 'medicina.cita'
     _description = 'Historia de Altura'
     
     altura_acrofobia = fields.Boolean(string='''Acrofobia (Temor a las alturas)''')

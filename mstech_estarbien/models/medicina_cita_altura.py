@@ -3,10 +3,9 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError, Warning
 
-class MedicinaCitaAltura(models.Model) :
-    _name = 'medicina.cita.altura'
-    _inherit = 'medicina.cita'
-    _description = 'Cita de Altura'
+class MedicinaCitaAlturaHistoria(models.Model) :
+    _name = 'medicina.cita.altura.historia'
+    _description = 'Historia de Altura'
     
     altura_acrofobia = fields.Boolean(string='''Acrofobia (Temor a las alturas)''')
     altura_alcoholismo_adiccion = fields.Boolean(string='''Alcholismo o abuso de sustancias (adicción)''')
@@ -36,7 +35,7 @@ class MedicinaCitaAltura(models.Model) :
     altura_hipertension_arterial = fields.Boolean(string='''Hipertensión arterial no controlada''')
     altura_hipoacusia_severa = fields.Boolean(string='''Hipoacusia severa''')
     altura_inapto_labor_altura_previo = fields.Boolean(string='''INAPTO para labor de altura (según resultados previos)''')
-    altura_indice_masa_corporal = fields.Float(string='''Índice de masa corporal''', compute='''_compute_altura_indice_masa_corporal''', store=True, readonly=False)
+    altura_indice_masa_corporal = fields.Float(string='''Índice de masa corporal''')
     altura_lenguaje_anormal = fields.Boolean(string='''Lenguaje anormal''')
     altura_licor_24_horas = fields.Boolean(string='''Consumió licor en las últimas 24 horas''')
     altura_limitacion_extremidades_fuerza_movilidad = fields.Boolean(string='''Limitación en fuerza y/o movilidad de extremidades''')
@@ -51,31 +50,33 @@ class MedicinaCitaAltura(models.Model) :
     altura_talla = fields.Float(string='''Talla''')
     altura_vertigo_mareo = fields.Boolean(string='''Vértigo / Mareos recientes''')
     
+    #historial_paciente = fields.Many2many(comodel_name='''medicina.cita.altura.historia''')
+    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.altura.historia''', relation='''medicina_cita_altura_historia_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')
+    
+    #@api.model
+    #def create(self, values) :
+    #    res = super(MedicinaCitaAltura, self).create(values)
+    #    if self._name == 'medicina.cita.altura' :
+    #        values.update({'original_id': res.id})
+    #        valores = self.env['medicina.cita.altura.historia'].create(values)
+    #    return res
+    #
+    #def write(self, vals) :
+    #    res = super(MedicinaCitaAltura, self).write(vals)
+    #    if self._name == 'medicina.cita.altura' :
+    #        valores = self.env['medicina.cita.altura.historia'].search([('original_id','in',self.ids)]).write(vals)
+    #    return res
+
+class MedicinaCitaAltura(models.Model) :
+    _name = 'medicina.cita.altura'
+    _description = 'Cita de Altura'
+    _inherits = {'medicina.cita.altura.historia': 'original_id'}
+    
+    original_id = fields.Many2one(comodel_name='medicina.cita.altura.historia')
+    altura_indice_masa_corporal = fields.Float(string='''Índice de masa corporal''', compute='''_compute_altura_indice_masa_corporal''', store=True, readonly=False)
+    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.altura''', relation='''medicina_cita_altura_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')
+    
     @api.depends('altura_talla','altura_peso')
     def _compute_altura_indice_masa_corporal(self):
         for rec in self:
             rec.altura_indice_masa_corporal = rec.altura_talla and rec.altura_peso / (rec.altura_talla ** 2) or 0.0
-    
-    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.altura''', relation='''medicina_cita_altura_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')
-#
-#    @api.model
-#    def create(self, values) :
-#        res = super(MedicinaCitaAltura, self).create(values)
-#        if self._name == 'medicina.cita.altura' :
-#            values.update({'original_id': res.id})
-#            valores = self.env['medicina.cita.altura.historia'].create(values)
-#        return res
-#    
-#    def write(self, vals) :
-#        res = super(MedicinaCitaAltura, self).write(vals)
-#        if self._name == 'medicina.cita.altura' :
-#            valores = self.env['medicina.cita.altura.historia'].search([('original_id','in',self.ids)]).write(vals)
-#        return res
-#
-#class MedicinaCitaAlturaHistoria(models.Model) :
-#    _name = 'medicina.cita.altura.historia'
-#    _inherit = 'medicina.cita.altura'
-#    
-#    original_id = fields.Many2one(comodel_name='medicina.cita.altura', string='Origen cita')
-#    
-#

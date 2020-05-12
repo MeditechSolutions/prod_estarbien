@@ -29,7 +29,11 @@
                     <attribute name="placeholder">Apellidos y Nombres / Razón Social</attribute>
                 </xpath>
                 
-                <xpath expr="//field[@name='vat']" position="replace"/>
+                <!--<xpath expr="//field[@name='vat']" position="replace"/>-->
+                <xpath expr="//field[@name='vat']" position="attributes">
+                    <attribute name="placeholder">Nro. Doc. Identidad...</attribute>
+                    <attribute name="attrs">{}</attribute>
+                </xpath>
                 <xpath expr="//div[@class='o_row']" position="before">
                     <div attrs="{'invisible': [('company_type','=','person')]}">
                         <div name="mouse_commercial_name" class="o_row">
@@ -48,7 +52,8 @@
                             <label name="l10n_latam_identification_type_id" for="l10n_latam_identification_type_id" string="Doc. Identidad"/>
                             <field name="l10n_latam_identification_type_id" placeholder="Tipo Doc. Identidad..." nolabel="1" options="{'no_open': True, 'no_create': True}" attrs="{'readonly': [('parent_id','!=',False)]}" domain="country_id and ['|', ('country_id','=',False), ('country_id','=',country_id)] or []"/>
                             <span name="mouse_l10n_latam_vat_separator" class="oe_read_only" attrs="{'invisible': ['|', ('l10n_latam_identification_type_id','=',False), ('vat','=',False)]}"> - </span>
-                            <field name="vat" placeholder="Nro. Doc. Identidad..." attrs="{'readonly': [('parent_id','!=',False)]}"/>
+                            <!--<field name="vat" placeholder="Nro. Doc. Identidad..." attrs="{'readonly': [('parent_id','!=',False)]}"/>-->
+                            <xpath expr="//field[@name='vat']" position="move"/>
                         </div>
                     </div>
                 </xpath>

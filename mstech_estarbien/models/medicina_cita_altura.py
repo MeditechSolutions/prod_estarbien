@@ -57,3 +57,23 @@ class MedicinaCitaAltura(models.Model) :
             rec.altura_indice_masa_corporal = rec.altura_talla and rec.altura_peso / (rec.altura_talla ** 2) or 0.0
     
     historial_paciente = fields.Many2many(comodel_name='''medicina.cita.altura''', relation='''medicina_cita_altura_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')
+    
+    @api.model
+    def create(self, values) :
+        res = super(MedicinaCitaAltura, self).create(values)
+        if self._name == 'medicina.cita.altura' :
+            values.update({'original_id': res.id})
+            valores = self.env['medicina.cita.altura.historia'].create(values)
+        return res
+    
+    def write(self, vals) :
+        res = super(MedicinaCitaAltura, self).write(vals)
+        if self._name == 'medicina.cita.altura' :
+            valores = self.env['medicina.cita.altura.historia'].search([('original_id','in',self.ids)]).write(vals)
+        return res
+
+class MedicinaCitaAlturaHistoria(models.Model) :
+    _name = 'medicina.cita.altura.historia'
+    _inherit = 'medicina.cita.altura'
+    
+    original_id = fields.Many2one(comodel_name='medicina.cita.altura', string='Origen cita')

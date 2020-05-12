@@ -78,6 +78,7 @@ class MedicinaCita(models.Model) :
     historial_paciente = fields.Many2many(comodel_name='''medicina.cita''', relation='''medicina_cita_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')
     
     name = fields.Char(string='''Cita''')
+    state = fields.Selection(string='Estado', selection=[('borrador','Borrador'),('reservado','Reservado'),('en_progreso','En progreso'),('atendido','Atendido'),('cancelado','Cancelado')])
 
 class MedicinaCitaDiagnostico(models.Model) :
     _name = 'medicina.cita.diagnostico'

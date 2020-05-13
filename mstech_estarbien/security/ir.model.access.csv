@@ -9,6 +9,8 @@ access_medicina_cita_grandes_alturas,medicina.cita.grandes_alturas,model_medicin
 access_medicina_cita_grandes_alturas_manager,medicina.cita.grandes_alturas.manager,model_medicina_cita_grandes_alturas,base.group_erp_manager,1,1,1,1
 access_medicina_cita_altura,medicina.cita.altura,model_medicina_cita_altura,base.group_user,1,0,0,0
 access_medicina_cita_altura_manager,medicina.cita.altura.manager,model_medicina_cita_altura,base.group_erp_manager,1,1,1,1
+access_medicina_cita_altura_historia,medicina.cita.altura.historia,model_medicina_cita_altura_historia,base.group_user,1,0,0,0
+access_medicina_cita_altura_historia_manager,medicina.cita.altura.historia.manager,model_medicina_cita_altura_historia,base.group_erp_manager,1,1,1,1
 access_medicina_cita_confinados,medicina.cita.confinados,model_medicina_cita_confinados,base.group_user,1,0,0,0
 access_medicina_cita_confinados_manager,medicina.cita.confinados.manager,model_medicina_cita_confinados,base.group_erp_manager,1,1,1,1
 access_medicina_cita_electrocardiograma,medicina.cita.electrocardiograma,model_medicina_cita_electrocardiograma,base.group_user,1,0,0,0

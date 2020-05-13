@@ -52,7 +52,7 @@ class MedicinaCitaAlturaHistoria(models.Model) :
     altura_vertigo_mareo = fields.Boolean(string='''Vértigo / Mareos recientes''')
     
     #historial_paciente = fields.Many2many(comodel_name='''medicina.cita.altura.historia''')
-    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.altura.historia''', relation='''medicina_cita_altura_historia_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')
+    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.altura.historia''', relation='''medicina_cita_altura_historia_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''', domain=[('tipo_cita','!=',False)])
     
     #@api.model
     #def create(self, values) :
@@ -75,7 +75,7 @@ class MedicinaCitaAltura(models.Model) :
     
     original_id = fields.Many2one(comodel_name='medicina.cita.altura.historia')
     altura_indice_masa_corporal = fields.Float(string='''Índice de masa corporal''', compute='''_compute_altura_indice_masa_corporal''', store=True, readonly=False)
-    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.altura''', relation='''medicina_cita_altura_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')
+    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.altura''', relation='''medicina_cita_altura_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''', domain=[('tipo_cita','!=',False)])
     
     @api.depends('altura_talla','altura_peso')
     def _compute_altura_indice_masa_corporal(self):

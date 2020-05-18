@@ -4,7 +4,7 @@ from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError, Warning
 
 class MedicinaCitaDermatologiaHistoria(models.Model) :
-    _name = 'medicina.cita.dermatologia'
+    _name = 'medicina.cita.dermatologia.historia'
     _inherit = 'medicina.cita'
     _description = 'Cita de Dermatología'
     

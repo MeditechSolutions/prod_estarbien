@@ -3,8 +3,8 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError, Warning
 
-class MedicinaCitaTSR(models.Model) :
-    _name = 'medicina.cita.tsr'
+class MedicinaCitaTSRHistoria(models.Model) :
+    _name = 'medicina.cita.tsr.historia'
     _inherit = 'medicina.cita'
     _description = 'Cita de Test Sintomático-Respiratorio'
     
@@ -20,4 +20,12 @@ class MedicinaCitaTSR(models.Model) :
     test_sr_tos_sangre = fields.Boolean(string='''Tos con sangre''')
     test_sr_tuberculosis = fields.Boolean(string='''Tuberculosis''')
     
+    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.tsr.historia''', relation='''medicina_cita_tsr_historia_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')
+
+class MedicinaCitaTSR(models.Model) :
+    _name = 'medicina.cita.tsr'
+    _description = 'Cita de Test Sintomático-Respiratorio'
+    _inherits = {'medicina.cita.tsr.historia': 'original_id'}
+    
+    original_id = fields.Many2one(comodel_name='medicina.cita.tsr.historia')
     historial_paciente = fields.Many2many(comodel_name='''medicina.cita.tsr''', relation='''medicina_cita_tsr_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')

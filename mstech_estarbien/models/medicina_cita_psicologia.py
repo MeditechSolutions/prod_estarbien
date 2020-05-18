@@ -3,8 +3,8 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError, Warning
 
-class MedicinaCitaPsicologia(models.Model) :
-    _name = 'medicina.cita.psicologia'
+class MedicinaCitaPsicologiaHistoria(models.Model) :
+    _name = 'medicina.cita.psicologia.historia'
     _inherit = 'medicina.cita'
     _description = 'Cita de Psicología'
     
@@ -57,4 +57,12 @@ class MedicinaCitaPsicologia(models.Model) :
     archivo_adjunto_psicologico_2 = fields.Binary(string='''New Archivo''')
     archivo_adjunto_psicologico_2_filename = fields.Char(string='''Filename for archivo_adjunto_psicologia_2''')
     
+    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.psicologia.historia''', relation='''medicina_cita_psicologia_historia_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')
+
+class MedicinaCitaPsicologia(models.Model) :
+    _name = 'medicina.cita.psicologia'
+    _description = 'Cita de Psicología'
+    _inherits = {'medicina.cita.psicologia.historia': 'original_id'}
+    
+    original_id = fields.Many2one(comodel_name='medicina.cita.psicologia.historia')
     historial_paciente = fields.Many2many(comodel_name='''medicina.cita.psicologia''', relation='''medicina_cita_psicologia_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')

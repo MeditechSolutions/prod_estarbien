@@ -3,8 +3,8 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError, Warning
 
-class MedicinaCitaElectrocardiograma(models.Model) :
-    _name = 'medicina.cita.electrocardiograma'
+class MedicinaCitaElectrocardiogramaHistoria(models.Model) :
+    _name = 'medicina.cita.electrocardiograma.historia'
     _inherit = 'medicina.cita'
     _description = 'Cita de EKG'
     
@@ -56,4 +56,12 @@ class MedicinaCitaElectrocardiograma(models.Model) :
     archivo_adjunto_cardiologico = fields.Binary(string='''Archivo''')
     archivo_adjunto_cardiologico_filename = fields.Char(string='''Filename for archivo_adjunto_informe_cardiologico''')
     
+    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.electrocardiograma.historia''', relation='''medicina_cita_electrocardiograma_historia_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')
+
+class MedicinaCitaElectrocardiograma(models.Model) :
+    _name = 'medicina.cita.electrocardiograma'
+    _description = 'Cita de EKG'
+    _inherits = {'medicina.cita.electrocardiograma.historia': 'original_id'}
+    
+    original_id = fields.Many2one(comodel_name='medicina.cita.electrocardiograma.historia')
     historial_paciente = fields.Many2many(comodel_name='''medicina.cita.electrocardiograma''', relation='''medicina_cita_electrocardiograma_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')

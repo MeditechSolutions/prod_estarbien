@@ -3,8 +3,8 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError, Warning
 
-class MedicinaCitaMedicina(models.Model) :
-    _name = 'medicina.cita.medicina'
+class MedicinaCitaMedicinaHistoria(models.Model) :
+    _name = 'medicina.cita.medicina.historia'
     _inherit = 'medicina.cita'
     _description = 'Cita de Medicina General'
     
@@ -65,4 +65,12 @@ class MedicinaCitaMedicina(models.Model) :
     medicina_sistema_nervioso = fields.Selection(string='''Sistema Nervioso''',selection=[("normal","Normal"),("anormal","Anormal"),("diferido","Diferido")])
     medicina_sistema_nervioso_razon = fields.Text(string='''Razón''')
     
+    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.medicina.historia''', relation='''medicina_cita_medicina_historia_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')
+
+class MedicinaCitaMedicina(models.Model) :
+    _name = 'medicina.cita.medicina'
+    _description = 'Cita de Medicina General'
+    _inherits = {'medicina.cita.medicina.historia': 'original_id'}
+    
+    original_id = fields.Many2one(comodel_name='medicina.cita.medicina.historia')
     historial_paciente = fields.Many2many(comodel_name='''medicina.cita.medicina''', relation='''medicina_cita_medicina_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')

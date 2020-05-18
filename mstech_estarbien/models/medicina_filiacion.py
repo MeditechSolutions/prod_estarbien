@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import UserError, ValidationError, Warning
 
 class MedicinaFiliacion(models.Model) :
     _name = 'medicina.filiacion'
     _description = 'Filiación'
+    _rec_name = 'paciente_id'
     
     paciente_id = fields.Many2one(comodel_name='''medical.patient''', string='''Paciente''')
-    paciente_empresa_id = fields.Many2one(comodel_name='''res.partner''', string='''Empresa''', compute='''_compute_paciente_datos''', store=True, readonly=True)
-    paciente_perfil_id = fields.Many2one(comodel_name='''medicina.paciente.perfil''', string='''Protocolo''', compute='''_compute_paciente_datos''', store=True, readonly=True)
+    paciente_empresa_id = fields.Many2one(comodel_name='''res.partner''', string='''Empresa''', compute='''_compute_paciente_datos''', store=True)
+    paciente_perfil_id = fields.Many2one(comodel_name='''medicina.paciente.perfil''', string='''Protocolo''', compute='''_compute_paciente_datos''', store=True)
     
     @api.depends('paciente_id')
     def _compute_paciente_datos(self):
@@ -18,29 +19,28 @@ class MedicinaFiliacion(models.Model) :
             record.paciente_perfil_id = record.paciente_id.perfil_id
     
     fecha_cita = fields.Date(string='''Fecha de atención''')
-    tipo_cita = fields.Selection(string='''Tipo''',selection='''[("diagnostico","Diagnóstico"),("triaje","Triaje"),("antecedentes_personales","Antecedentes Personales"),("historia_ocupacional","Historia Ocupacional"),("medicina","Medicina general"),("dermatologia","Dermatología"),("grandes_alturas","Anexo N°16 A"),("altura","Certificación de trabajo en altura"),("confinados","Trabajo en espacios confinados"),("electrocardiograma","Electrocardiograma"),("oftalmologia","Oftalmología"),("audiometria","Audiometría"),("psicologia","Psicología"),("odontograma","Odontograma"),("musculo_esqueletico","Músculo Esquelético"),("radiologia","Radiología"),("espirometria","Espirometría"),("tsr","Test de Sintomático Respiratorio"),("laboratorio","Laboratorio"),("consentimiento","Consentimiento"),("interconsultas","Interconsultas"),("encuesta","Encuesta")]''')
-    #["diagnostico","Diagnóstico"]
-    #["triaje","Triaje"]
-    #["antecedentes_personales","Antecedentes Personales"]
-    #["historia_ocupacional","Historia Ocupacional"]
-    #["medicina","Medicina general"]
-    #["dermatologia","Dermatología"]
-    #["grandes_alturas","Anexo N°16 A"]
-    #["altura","Certificación de trabajo en altura"]
-    #["confinados","Trabajo en espacios confinados"]
-    #["electrocardiograma","Electrocardiograma"]
-    #["oftalmologia","Oftalmología"]
-    #["audiometria","Audiometría"]
-    #["psicologia","Psicología"]
-    #["odontograma","Odontograma"]
-    #["musculo_esqueletico","Músculo Esquelético"]
-    #["radiologia","Radiología"]
-    #["espirometria","Espirometría"]
-    #["tsr","Test de Sintomático Respiratorio"]
-    #["laboratorio","Laboratorio"]
-    #["consentimiento","Consentimiento"]
-    #["interconsultas","Interconsultas"]
-    #["encuesta","Encuesta"]
+    tipo_cita = fields.Selection(string='''Tipo''', selection=[("diagnostico","Diagnóstico"),
+                                                               ("triaje","Triaje"),
+                                                               ("antecedentes_personales","Antecedentes Personales"),
+                                                               ("historia_ocupacional","Historia Ocupacional"),
+                                                               ("medicina","Medicina general"),
+                                                               ("dermatologia","Dermatología"),
+                                                               ("grandes_alturas","Anexo N°16 A"),
+                                                               ("altura","Certificación de trabajo en altura"),
+                                                               ("confinados","Trabajo en espacios confinados"),
+                                                               ("electrocardiograma","Electrocardiograma"),
+                                                               ("oftalmologia","Oftalmología"),
+                                                               ("audiometria","Audiometría"),
+                                                               ("psicologia","Psicología"),
+                                                               ("odontograma","Odontograma"),
+                                                               ("musculo_esqueletico","Músculo Esquelético"),
+                                                               ("radiologia","Radiología"),
+                                                               ("espirometria","Espirometría"),
+                                                               ("tsr","Test de Sintomático Respiratorio"),
+                                                               ("laboratorio","Laboratorio"),
+                                                               ("consentimiento","Consentimiento"),
+                                                               ("interconsultas","Interconsultas"),
+                                                               ("encuesta","Encuesta")])
     atencion_inicio = fields.Datetime(string='''Inicio de la atención''')
     atencion_fin = fields.Datetime(string='''Fin de la atención''')
     
@@ -49,7 +49,7 @@ class MedicinaFiliacion(models.Model) :
     #paciente_dni = fields.Char(string='''DNI''', compute='''_compute_paciente_datos''', store=True, readonly=True)
     #paciente_edad = fields.Char(string='''Edad''', compute='''_compute_paciente_datos''', store=True, readonly=True)
     #paciente_sexo = fields.Selection(string='''Sexo''',selection='''[('m', 'Male'), ('f', 'Female')]''', compute='''_compute_paciente_datos''', store=True, readonly=True)
-
+    
     auditado = fields.Boolean(string='''Auditado''')
     auditor = fields.Many2one(comodel_name='''res.partner''', string='''Auditor''')
     responsable = fields.Many2one(comodel_name='''res.partner''', string='''Responsable''')
@@ -63,3 +63,22 @@ class MedicinaFiliacion(models.Model) :
     historial_paciente = fields.Many2many(comodel_name='''medicina.cita''', relation='''medicina_filiacion_medicina_cita_rel''', column1='''filiacion_id''', column2='''cita_id''', string='''Historial del paciente''')
     
     name = fields.Char(string='''Filiación''')
+    state = fields.Selection(string='Estado', selection=[('borrador','Borrador'),('reservado','Reservado'),('en_progreso','En progreso'),('atendido','Atendido'),('cancelado','Cancelado')])
+    
+    @api.model
+    def create(self, values) :
+        res = super(MedicinaFiliacion, self).create(values)
+        values.update({'original_id': res.id})
+        valores = self.env['medicina.filiacion.historia'].create(values)
+        return res
+    
+    def write(self, vals) :
+        res = super(MedicinaFiliacion, self).write(vals)
+        valores = self.env['medicina.filiacion.historia'].search([('original_id','in',self.ids)]).write(vals)
+        return res
+
+class MedicinaFiliacionHistoria(models.Model) :
+    _name = 'medicina.filiacion.historia'
+    _inherit = 'medicina.filiacion'
+    
+    original_id = fields.Many2one(comodel_name='medicina.filiacion', string='Filiación origen')

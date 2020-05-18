@@ -3,7 +3,7 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError, Warning
 
-class MedicinaCitaDermatologia(models.Model) :
+class MedicinaCitaDermatologiaHistoria(models.Model) :
     _name = 'medicina.cita.dermatologia'
     _inherit = 'medicina.cita'
     _description = 'Cita de Dermatología'
@@ -34,4 +34,12 @@ class MedicinaCitaDermatologia(models.Model) :
     dermatologia_rinitis_asma_cuestionario = fields.Boolean(string='''¿Sufre de rinitis alérgica o asma?''')
     dermatologia_tamizaje_observaciones = fields.Text(string='''Observaciones de tamizaje (dermatología)''')
     
+    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.dermatologia.historia''', relation='''medicina_cita_dermatologia_historia_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')
+
+class MedicinaCitaDermatologia(models.Model) :
+    _name = 'medicina.cita.dermatologia'
+    _description = 'Cita de Dermatología'
+    _inherits = {'medicina.cita.dermatologia.historia': 'original_id'}
+    
+    original_id = fields.Many2one(comodel_name='medicina.cita.dermatologia.historia')
     historial_paciente = fields.Many2many(comodel_name='''medicina.cita.dermatologia''', relation='''medicina_cita_dermatologia_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')

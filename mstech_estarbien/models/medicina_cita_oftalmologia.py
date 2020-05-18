@@ -3,8 +3,8 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError, Warning
 
-class MedicinaCitaOftalmologia(models.Model) :
-    _name = 'medicina.cita.oftalmologia'
+class MedicinaCitaOftalmologiaHistoria(models.Model) :
+    _name = 'medicina.cita.oftalmologia.historia'
     _inherit = 'medicina.cita'
     _description = 'Cita de Oftalmología'
     
@@ -84,4 +84,12 @@ class MedicinaCitaOftalmologia(models.Model) :
     archivo_adjunto_oftalmologico_2_filename = fields.Char(string='''Filename for archivo_adjunto_oftalmologico_2''')
     cie_10_oftalmologia_tipo_diagnostico = fields.Selection(string='''Tipo de diagnóstico CIE-10 oftalmológico''',selection=[("normal","Normal"),("anormal","Anormal")])
     
+    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.oftalmologia.historia''', relation='''medicina_cita_oftalmologia_historia_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')
+
+class MedicinaCitaOftalmologia(models.Model) :
+    _name = 'medicina.cita.oftalmologia'
+    _description = 'Cita de Oftalmología'
+    _inherits = {'medicina.cita.oftalmologia.historia': 'original_id'}
+    
+    original_id = fields.Many2one(comodel_name='medicina.cita.oftalmologia.historia')
     historial_paciente = fields.Many2many(comodel_name='''medicina.cita.oftalmologia''', relation='''medicina_cita_oftalmologia_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')

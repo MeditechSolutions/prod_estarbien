@@ -3,8 +3,8 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError, Warning
 
-class MedicinaCitaAudiometria(models.Model) :
-    _name = 'medicina.cita.audiometria'
+class MedicinaCitaAudiometriaHistoria(models.Model) :
+    _name = 'medicina.cita.audiometria.historia'
     _inherit = 'medicina.cita'
     _description = 'Cita de Audiometría'
     
@@ -198,4 +198,12 @@ class MedicinaCitaAudiometria(models.Model) :
     cie_10_audiometria_recomendaciones_derecho = fields.Text(string='''Recomendaciones CIE-10 de la audiometría del oído derecho''')
     cie_10_audiometria_recomendaciones_izquierdo = fields.Text(string='''Recomendaciones CIE-10 de la audiometría del oído izquierdo''')
     
+    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.audiometria.historia''', relation='''medicina_cita_audiometria_historia_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')
+
+class MedicinaCitaAudiometria(models.Model) :
+    _name = 'medicina.cita.audiometria'
+    _description = 'Cita de AudiometrÍa'
+    _inherits = {'medicina.cita.audiometria.historia': 'original_id'}
+    
+    original_id = fields.Many2one(comodel_name='medicina.cita.audiometria.historia')
     historial_paciente = fields.Many2many(comodel_name='''medicina.cita.audiometria''', relation='''medicina_cita_audiometria_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')

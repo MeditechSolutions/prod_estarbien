@@ -3,8 +3,8 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError, Warning
 
-class MedicinaCitaConfinados(models.Model) :
-    _name = 'medicina.cita.confinados'
+class MedicinaCitaConfinadosHistoria(models.Model) :
+    _name = 'medicina.cita.confinados.historia'
     _inherit = 'medicina.cita'
     _description = 'Cita de espacios confinados'
     
@@ -30,7 +30,7 @@ class MedicinaCitaConfinados(models.Model) :
     confinados_frecuencia_cardiaca = fields.Integer(string='''Frecuencia cardiaca (espacios confinados)''')
     confinados_frecuencia_respiratoria = fields.Integer(string='''Frecuencia respiratoria (espacios confinados)''')
     confinados_hipoacusia = fields.Boolean(string='''Hipoacusia''')
-    confinados_indice_masa_corporal = fields.Float(string='''Índice de masa corporal (espacios confinados)''', compute='''_compute_confinados_indice_masa_corporal''', store=True, readonly=False)
+    confinados_indice_masa_corporal = fields.Float(string='''Índice de masa corporal (espacios confinados)''')
     confinados_lassegue_positivo = fields.Boolean(string='''Lassegue positivo''')
     confinados_limitacion_extremidades = fields.Boolean(string='''Limitación en fuerza y/o movilidad de extremidades''')
     confinados_nisfagmus = fields.Boolean(string='''Nisfagmus''')
@@ -45,9 +45,18 @@ class MedicinaCitaConfinados(models.Model) :
     confinados_validez_inicio = fields.Date(string='''Inicio de la validez de la aptitud (espacios confinados)''')
     confinados_vision_profundidad_alterada = fields.Boolean(string='''Prueba de visión de profundidad alterada''')
     
+    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.confinados.historia''', relation='''medicina_cita_confinados_historia_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')
+
+class MedicinaCitaConfinados(models.Model) :
+    _name = 'medicina.cita.confinados'
+    _description = 'Cita de espacios confinados'
+    _inherits = {'medicina.cita.confinados.historia': 'original_id'}
+    
+    original_id = fields.Many2one(comodel_name='medicina.cita.confinados.historia')
+    confinados_indice_masa_corporal = fields.Float(string='''Índice de masa corporal (espacios confinados)''', compute='''_compute_confinados_indice_masa_corporal''', store=True, readonly=False)
+    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.confinados''', relation='''medicina_cita_confinados_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')
+    
     @api.depends('confinados_talla','confinados_peso')
-    def _compute_confinados_indice_masa_corporal(self):
+    def _compute_confinados_indice_masa_corporal(self) :
         for rec in self:
             rec.confinados_indice_masa_corporal = rec.confinados_talla and rec.confinados_peso / ((rec.confinados_talla / 100.0) ** 2) or 0.0
-    
-    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.confinados''', relation='''medicina_cita_confinados_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')

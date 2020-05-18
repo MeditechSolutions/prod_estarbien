@@ -3,8 +3,8 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError, Warning
 
-class MedicinaCitaGrandesAlturas(models.Model) :
-    _name = 'medicina.cita.grandes_alturas'
+class MedicinaCitaGrandesAlturasHistoria(models.Model) :
+    _name = 'medicina.cita.grandes_alturas.historia'
     _inherit = 'medicina.cita'
     _description = 'Cita de Grandes Alturas'
     
@@ -35,4 +35,12 @@ class MedicinaCitaGrandesAlturas(models.Model) :
     grandes_alturas_problemas_respiratorios = fields.Boolean(string='''Problemas respiratorios: asma, EPOC, otros''')
     grandes_alturas_saturacion_oxigeno = fields.Float(string='''Saturación de oxígeno (grandes alturas)''')
     
+    historial_paciente = fields.Many2many(comodel_name='''medicina.cita.grandes_alturas.historia''', relation='''medicina_cita_grandes_alturas_historia_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')
+
+class MedicinaCitaGrandesAlturas(models.Model) :
+    _name = 'medicina.cita.grandes_alturas'
+    _description = 'Cita de Grandes Alturas'
+    _inherits = {'medicina.cita.grandes_alturas.historia': 'original_id'}
+    
+    original_id = fields.Many2one(comodel_name='medicina.cita.grandes_alturas.historia')
     historial_paciente = fields.Many2many(comodel_name='''medicina.cita.grandes_alturas''', relation='''medicina_cita_grandes_alturas_m2m_rel''', column1='''cita_id1''', column2='''cita_id2''', string='''Historial del paciente''')

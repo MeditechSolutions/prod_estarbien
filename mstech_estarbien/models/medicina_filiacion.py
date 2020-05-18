@@ -77,8 +77,8 @@ class MedicinaFiliacion(models.Model) :
         valores = self.env['medicina.filiacion.historia'].search([('original_id','in',self.ids)]).write(vals)
         return res
 
-class MedicinaFiliacionHistoria(models.Model) :
-    _name = 'medicina.filiacion.historia'
-    _inherit = 'medicina.filiacion'
-    
-    original_id = fields.Many2one(comodel_name='medicina.filiacion', string='Filiación origen')
+#class MedicinaFiliacionHistoria(models.Model) :
+#    _name = 'medicina.filiacion.historia'
+#    _inherit = 'medicina.filiacion'
+#    
+#    original_id = fields.Many2one(comodel_name='medicina.filiacion', string='Filiación origen')

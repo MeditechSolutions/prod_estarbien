@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+	    <record id="view_medicina_cita_form_espirometria" model="ir.ui.view">
+            <field name="name">medicina.cita.form.espirometria</field>
+            <field name="model">medicina.cita</field>
+            <field name="inherit_id" ref="mstech_estarbien.view_medicina_cita_form"/>
+            <field name="priority" eval="66"/>
+            <field name="arch" type="xml">
+                
+            </field>
+        </record>
+	</data>
+</odoo>

@@ -20,7 +20,7 @@
             </field>
         </record>
         
-        <record id="view_city_tree_mouse_toponyms" model="ir.ui.view">
+        <record id="view_city_tree" model="ir.ui.view">
             <field name="name">res.city.tree.mouse_toponyms</field>
             <field name="model">res.city</field>
             <field name="inherit_id" ref="base_address_city.view_city_tree"/>
@@ -35,7 +35,7 @@
             </field>
         </record>
         
-        <record id="view_city_filter_mouse_toponyms" model="ir.ui.view">
+        <record id="view_city_filter" model="ir.ui.view">
             <field name="name">res.city.search.mouse_toponyms</field>
             <field name="model">res.city</field>
             <field name="inherit_id" ref="base_address_city.view_city_filter"/>
